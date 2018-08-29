@@ -1,10 +1,16 @@
 package com.example.steven.datingapp;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.graphics.drawable.GradientDrawable;
+import android.graphics.drawable.shapes.RectShape;
+import android.graphics.drawable.shapes.Shape;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.PopupWindow;
@@ -12,6 +18,8 @@ import android.widget.TextView;
 
 import java.util.Timer;
 import java.util.TimerTask;
+
+import static android.text.InputType.TYPE_TEXT_FLAG_MULTI_LINE;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -46,8 +54,15 @@ public class MainActivity extends AppCompatActivity {
         tv = new TextView(this);
 
 
+        GradientDrawable popUpBG=new GradientDrawable();
+        popUpBG.setCornerRadius(30);
+        popUpBG.setColor(0x600000FF);
+
+
         params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,
                 LinearLayout.LayoutParams.WRAP_CONTENT);
+        params.setMargins(10,10,10,10);
+
         layout.setOrientation(LinearLayout.VERTICAL);
         tv.setText("Pineapple on Pizza is ____\n" +
                 "a) Delicious\n" +
@@ -55,8 +70,10 @@ public class MainActivity extends AppCompatActivity {
                 "c) Never tried it\n" +
                 "d) Meh");
         layout.addView(tv, params);
+        //80 is alpha value, make semi transparent
+        //other six digits to the right are RGB
+        popUp.setBackgroundDrawable(popUpBG);
         popUp.setContentView(layout);
-        // popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
         //mainLayout.addView(but, params);
         setContentView(mainLayout);
 
@@ -84,14 +101,14 @@ public class MainActivity extends AppCompatActivity {
             }
         };
 
-        timer.schedule(task, 0, 1000);  // interval of one minute
+        timer.schedule(task, 0, 2*1000);  // interval of x seconds
 
     }
 
     public void displayQuestions(){
         if (click) {
             popUp.showAtLocation(layout, Gravity.BOTTOM, 10, 10);
-            popUp.update(50, 50, 300, 80);
+            popUp.update(50, 50, 300, ViewGroup.LayoutParams.WRAP_CONTENT);
             click = false;
         } else {
             popUp.dismiss();
