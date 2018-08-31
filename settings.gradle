@@ -1,1 +1,3 @@
 include ':app'
+include ':TestSpring'
+project(':TestSpring').projectDir = new File('./app/src/main/java/TestSpring')

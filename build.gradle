@@ -4,12 +4,16 @@ buildscript {
     
     repositories {
         google()
-        jcenter()
+        //jcenter()
+        jcenter{
+            url "http://jcenter.bintray.com/"
+        }
+        mavenCentral()
+        maven { url 'http://repo1.maven.org/maven2' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.1.4'
-        
-
+        //classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.3.RELEASE")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
@@ -18,7 +22,12 @@ buildscript {
 allprojects {
     repositories {
         google()
-        jcenter()
+        //jcenter()
+        jcenter{
+            url "http://jcenter.bintray.com/"
+        }
+        mavenCentral()
+        maven { url 'http://repo1.maven.org/maven2' }
     }
 }
 
